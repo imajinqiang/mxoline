@@ -1,0 +1,25 @@
+[[source]]
+name = "pypi"
+url = "https://mirrors.aliyun.com/pypi/simple"
+verify_ssl = true
+
+[dev-packages]
+
+[packages]
+mysqlclient = "*"
+django-crispy-forms = "*"
+django-import-export = "*"
+django-reversion = "*"
+django-formtools = "*"
+future = "*"
+httplib2 = "*"
+six = "*"
+xlwt = "*"
+requests = "*"
+Django = "~=2.2"
+Pillow = "*"
+XlsxWriter = "*"
+django-simpleui = "*"
+
+[requires]
+python_version = "3.7"
