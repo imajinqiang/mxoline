@@ -15,6 +15,9 @@ class UserAsk(BaeModel):
         verbose_name = '用户咨询'
         verbose_name_plural = verbose_name
 
+    def __str__(self):
+        return f'{self.name}_{self.course_name}({self.mobile})'
+
 
 class CourseComments(BaeModel):
     user = models.ForeignKey(UserProfile, on_delete=models.CASCADE,verbose_name='用户')
@@ -24,6 +27,9 @@ class CourseComments(BaeModel):
     class Meta:
         verbose_name = '课程评论'
         verbose_name_plural = verbose_name
+
+    def __str__(self):
+        return self.comments
 
 
 class UserFavorite(BaeModel):
@@ -37,6 +43,9 @@ class UserFavorite(BaeModel):
         verbose_name = '用户收藏'
         verbose_name_plural = verbose_name
 
+    def __str__(self):
+        return F'{self.user.name}_{self.fav_id}'
+
 
 class UserMessage(BaeModel):
     user = models.ForeignKey(UserProfile, on_delete=models.CASCADE, verbose_name='用户')
@@ -47,6 +56,9 @@ class UserMessage(BaeModel):
         verbose_name = '用户消息'
         verbose_name_plural = verbose_name
 
+    def __str__(self):
+        return self.message
+
 
 class UserCourse(BaeModel):
     user = models.ForeignKey(UserProfile, on_delete=models.CASCADE, verbose_name='用户')
@@ -55,3 +67,6 @@ class UserCourse(BaeModel):
     class Meta:
         verbose_name = '用户课程'
         verbose_name_plural = verbose_name
+
+    def __str__(self):
+        return self.course.name

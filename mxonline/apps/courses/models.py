@@ -7,7 +7,7 @@ from apps.organizations.models import Teacher
 class Course(BaeModel):
     name = models.CharField(max_length=50, verbose_name=u'课程名称')
     desc = models.CharField(max_length=300, verbose_name='课程描述')
-    learn_times = models.IntegerField(default=0, verbose_name='学习市场(分钟)')
+    learn_times = models.IntegerField(default=0, verbose_name='学习时长(分钟)')
     degree = models.CharField(max_length=20 , choices=(
                                              ('primary', '初级'),
                                              ('intermediate','中级'),
