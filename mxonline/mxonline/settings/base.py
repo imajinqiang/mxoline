@@ -43,7 +43,7 @@ INSTALLED_APPS = [
     'apps.users.apps.UsersConfig',
     'crispy_forms',
     'xadmin.apps.XAdminConfig',
-
+    'captcha',
 ]
 
 
@@ -62,7 +62,7 @@ ROOT_URLCONF = 'mxonline.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [os.path.join(BASE_DIR, '../../templates')]
+        'DIRS': [os.path.join(BASE_DIR, 'templates')]
         ,
         'APP_DIRS': True,
         'OPTIONS': {
@@ -128,3 +128,15 @@ STATIC_URL = '/static/'
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'static'),
 ]
+
+#阿里云短信服务
+aliyunsms_accesskeyid = 'LTAItcbQvQIhqbDA'
+aliyunsms_accesskeysecret = 'VIZUAVw6SPOBPlwO2E0Lv6eaeeUNi9'
+aliyunsms_signature = "雪山飞狐"
+aliyunsms_template_id = 'SMS_172740103'
+
+
+#Redis配置
+REDIS_HOST = '127.0.0.1'
+REDIS_PORT = 6379
+

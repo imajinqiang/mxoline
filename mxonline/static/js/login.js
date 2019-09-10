@@ -138,8 +138,8 @@ $(function() {
                 }else if(data.captcha){
                     Dml.fun.showValidateError($inpRegCaptcha, data.captcha);
                     refresh_captcha({"data":{"form_id":"jsRefreshCode"}});
-                }else if(data.msg){
-                    Dml.fun.showValidateError($inpRegMobile, data.msg);
+                }else if(data.message){
+                    Dml.fun.showValidateError($inpRegMobile, data.message);
                     $sendBtn.val("重新发送");
                     refresh_captcha({"data":{"form_id":"jsRefreshCode"}});
                 }else if(data.status == 'success'){

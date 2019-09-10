@@ -64,34 +64,27 @@ def sign(access_secret,  prepare_str):
     return special_url_encode(base_str)
 
 
-def _send_sms_ali(mobiles, tpl_code, tpl_params):
+def send_sms_ali(mobiles, accesskeyid, accesskeysecret, signature, template_id, code):
     prefix_url = "https://dysmsapi.aliyuncs.com/?"
-
-    accesskeyid = "LTAItcbQvQIhqbDA"
-    accesssecret = "VIZUAVw6SPOBPlwO2E0Lv6eaeeUNi9"
-    sign_name = "雪山飞狐"
-
-    params_lst = params(accesskeyid, mobiles, tpl_code, tpl_params, sign_name)
+    params_lst = params(accesskeyid, mobiles, template_id, code, signature)
     eps = encode_params(params_lst)
     prepare_str = prepare_sign(eps)
-    sign_str = sign(accesssecret, prepare_str)
+    sign_str = sign(accesskeysecret, prepare_str)
 
     url = f"{prefix_url}Signature={sign_str}&{eps}"
-    request_status = requests.get(url)
-    
-    if request_status.status_code != 200:
-        return False
-    else:
-        jn = json.loads(request_status.text)
-        if jn.get("Code") == "OK":
-            return True
-        else:
-            return False
+    response_data = requests.get(url)
+    return json.loads(response_data.text)
 
 
 if __name__ == "__main__":
     # 签名校验测试，与测试样例一致，待拿到正式参数时再做测试修改
+    _accesskeyid = "LTAItcbQvQIhqbDA"
+    _accesskeysecret = "VIZUAVw6SPOBPlwO2E0Lv6eaeeUNi9"
+    _signature = "雪山飞狐"
+    _template_id = "SMS_172740103"
+    _code = {"code": "0000"}
 
-    _tpl_code = "SMS_172740103"
-    _tpl_params = {"code": "0000"}
-    _send_sms_ali("17600122677", _tpl_code, _tpl_params)
+    response_json = send_sms_ali("17600122677", _accesskeyid, _accesskeysecret, _signature, _template_id, _code)
+    code = response_json['Code']
+    message = response_json['Message']
+    print(response_json)

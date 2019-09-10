@@ -19,6 +19,8 @@ requests = "*"
 Django = "~=2.2"
 Pillow = "*"
 XlsxWriter = "*"
+django-simple-captcha = "*"
+redis = "*"
 
 [requires]
 python_version = "3.7"
