@@ -1,6 +1,6 @@
 import xadmin
 
-from apps.courses.models import Course, Lesson, Video, CourseResource
+from apps.courses.models import Course, Lesson, Video, CourseResource, CoursesTag
 
 
 class GlobalSettings(object):
@@ -18,6 +18,12 @@ class CourseAdmin(object):
     search_fields = ['name', 'desc', 'detail', 'degree', 'students']
     list_filter = ['name', 'desc', 'detail', 'degree', 'learn_times', 'students']
     list_editable = ['degree', 'desc']
+
+
+class CoursesTagAdmin(object):
+    list_display = ['course', 'tag', 'add_time']
+    search_fields = ['course', 'tag']
+    list_filter = ['course', 'tag', 'add_time']
 
 
 class LessonAdmin(object):
@@ -39,6 +45,7 @@ class CourseResourceAdmin(object):
 
 
 xadmin.site.register(Course, CourseAdmin)
+xadmin.site.register(CoursesTag, CoursesTagAdmin)
 xadmin.site.register(Lesson, LessonAdmin)
 xadmin.site.register(Video, VideoAdmin)
 xadmin.site.register(CourseResource, CourseResourceAdmin)

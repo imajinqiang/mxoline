@@ -1931,7 +1931,7 @@ textarea:focus {
 
 .group_list .des h2 {
     line-height: 50px;
-    font-size: 18px;
+    font-size: 15px;
     overflow: hidden;
     color: #434343;
     word-break: break-all;
@@ -2813,7 +2813,7 @@ footer .footer .line {
 }
 
 .list .group_list .box .des h2 {
-    font-size: 18px;
+    font-size: 15px;
     line-height: 30px;
 }
 

@@ -50,6 +50,19 @@ class RegisterView(View):
             })
 
 class DynamicLoginView(View):
+    """
+    动态登录
+    """
+    def get(self, request, *args, **kwargs):
+        if request.user.is_authenticated:
+            return HttpResponseRedirect(reverse('index'))
+        next_url = request.GET.get('next', '')
+        login_form = DynamicLoginForm()
+        return render(request, 'login.html', {
+            'login_form': login_form,
+            'next_url': next_url
+        })
+
     def post(self, request, *args, **kwargs):
         login_form = DynamicLoginPostForm(request.POST)
         dynamic_login = True
@@ -66,6 +79,9 @@ class DynamicLoginView(View):
                 user.mobile = mobile
                 user.save()
             login(request, user)
+            next = request.GET.get('next', '')
+            if next:
+                return HttpResponseRedirect(next)
             return HttpResponseRedirect(reverse('index'))
         else:
             verification = DynamicLoginForm()
@@ -103,8 +119,12 @@ class LoginView(View):
     def get(self, request, *args, **kwargs):
         if request.user.is_authenticated:
             return HttpResponseRedirect(reverse('index'))
+        next_url = request.GET.get('next', '')
         login_form = DynamicLoginForm()
-        return render(request, 'login.html', {'login_form': login_form})
+        return render(request, 'login.html', {
+            'login_form': login_form,
+            'next_url': next_url
+        })
 
     def post(self, request, *args, **kwargs):
         login_form = LoginForm(request.POST)
@@ -114,6 +134,9 @@ class LoginView(View):
             user = authenticate(username=username, password=password)
             if user is not None:
                 login(request, user)
+                next = request.GET.get('next', '')
+                if next:
+                    return HttpResponseRedirect(next)
                 return HttpResponseRedirect(reverse('index'))
             else:
                 return render(request, 'login.html', {'message': '用户名或密码错误', 'login_form': login_form})

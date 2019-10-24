@@ -23,6 +23,7 @@ class Course(BaeModel):
     detail = models.TextField(verbose_name='课程详情')
     image = models.ImageField(max_length=100, upload_to='courses/%Y/%m', verbose_name='封面图')
     is_classics = models.BooleanField(default=False, verbose_name='是否经典课程')
+    notice = models.CharField(max_length=300, default='', verbose_name='课程公共')
     teacher = models.ForeignKey(Teacher, on_delete=models.CASCADE, verbose_name='课程讲师')
     course_org = models.ForeignKey(CourseOrg, null=True, blank=True, on_delete=models.CASCADE, verbose_name='课程机构')
     class Meta:
@@ -31,6 +32,21 @@ class Course(BaeModel):
 
     def __str__(self):
         return self.name
+
+    def lesson_numbs(self):
+        return self.lesson_set.all().count()
+
+
+class CoursesTag(BaeModel):
+    course = models.ForeignKey(Course, on_delete=models.CASCADE, verbose_name='课程')
+    tag = models.CharField(max_length=100, verbose_name='标签')
+
+    class Meta:
+        verbose_name = '课程标签'
+        verbose_name_plural = verbose_name
+
+    def __str__(self):
+        return self.tag
 
 
 class Lesson(BaeModel):

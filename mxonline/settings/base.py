@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     'crispy_forms',
     'xadmin.apps.XAdminConfig',
     'captcha',
+    'pure_pagination',
 ]
 
 
@@ -141,3 +142,9 @@ aliyunsms_template_id = 'SMS_172740103'
 REDIS_HOST = '127.0.0.1'
 REDIS_PORT = 6379
 
+#分页配置
+PAGINATION_SETTINGS = {
+    'PAGE_RANGE_DISPLAYED': 10,
+    'MARGIN_PAGES_DISPLAYED': 2,
+    'SHOW_FIRST_PAGE_WHEN_INVALID': True,
+}

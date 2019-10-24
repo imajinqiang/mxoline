@@ -6,7 +6,7 @@ ps 项目目前处于开发阶段
 * Mac
 * Python3.7
 * Django2.2.4
-* pipenv
+* virtualenvwrapper
 * pyenv
 
 ## 遇到的问题

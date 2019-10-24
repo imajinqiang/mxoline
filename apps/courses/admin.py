@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-from apps.courses.models import Course, Lesson, Video, CourseResource
+from apps.courses.models import Course, Lesson, Video, CourseResource, CoursesTag
 # Register your models here.
 
 
@@ -28,6 +28,10 @@ class CourseResourceAdmin(admin.ModelAdmin):
     search_fields = ['course', 'name', 'file']
     list_filter = ['course', 'name', 'file', 'add_time']
 
+class CoursesTagAdmin(object):
+    list_display = ['course', 'tag', 'add_time']
+    search_fields = ['course', 'tag']
+    list_filter = ['course', 'tag', 'add_time']
 
 admin.site.register(Course, CourseAdmin)
 admin.site.register(Lesson, LessonAdmin)

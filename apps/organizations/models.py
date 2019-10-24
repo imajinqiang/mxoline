@@ -34,7 +34,6 @@ class CourseOrg(BaeModel):
 
     def courses(self):
         courses = self.course_set.all()
-        print(courses)
         return courses
 
     class Meta:
@@ -56,6 +55,7 @@ class Teacher(BaeModel):
     fav_nums = models.IntegerField(default=0, verbose_name='收藏数')
     image = models.ImageField(max_length=100, upload_to='teacher/%Y/%m', verbose_name='头像')
     org = models.ForeignKey(CourseOrg, on_delete=models.CASCADE, verbose_name='所属机构')
+    is_gold = models.BooleanField(default=False, verbose_name='是否金牌')
 
     class Meta:
         verbose_name = '讲师'
@@ -63,3 +63,6 @@ class Teacher(BaeModel):
 
     def __str__(self):
         return self.name
+
+    def course_nums(self):
+        return self.course_set.all().count()
