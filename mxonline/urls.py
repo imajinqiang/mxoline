@@ -45,6 +45,6 @@ urlpatterns = [
     #配置上传文件访问URL
     url(r'^media/(?P<path>.*)$', serve, {'document_root': MEDIA_ROOT}),
 
-
-
+    #个人中心
+    url(r'^users/', include(('apps.users.urls', 'users'), namespace='users')),
 ]

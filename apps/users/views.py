@@ -9,7 +9,9 @@ from apps.users.forms import (
     DynamicLoginForm,
     DynamicLoginPostForm,
     RegisterGetForm,
-    RegisterPostForm,)
+    RegisterPostForm,
+    UserInfoForm,
+)
 from extra_apps.utils.sms import send_sms_ali
 from extra_apps.utils.random_str import generate_random
 from mxonline.settings.base import (
@@ -22,6 +24,24 @@ from mxonline.settings.base import (
 from apps.users.models import UserProfile
 import redis
 # Create your views here.
+
+
+class UserInfoView(View):
+    def get(self, request, *args, **kwargs):
+        user_info = UserProfile.objects.get(username=request.user)
+        return render(request, 'usercenter-info.html',{
+            'user_info': user_info,
+        })
+
+    def post(self, request, *args, **kwargs):
+        user_form = UserInfoForm(request.POST, instance=request.user)
+        if user_form.is_valid():
+            user_form.save()
+            return JsonResponse({
+                'status': 'success'
+            })
+
+        return render(request, 'usercenter-info.html')
 
 
 class RegisterView(View):
