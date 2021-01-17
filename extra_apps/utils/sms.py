@@ -78,13 +78,13 @@ def send_sms_ali(mobiles, accesskeyid, accesskeysecret, signature, template_id, 
 
 if __name__ == "__main__":
     # 签名校验测试，与测试样例一致，待拿到正式参数时再做测试修改
-    _accesskeyid = "LTAItcbQvQIhqbDA"
-    _accesskeysecret = "VIZUAVw6SPOBPlwO2E0Lv6eaeeUNi9"
+    _accesskeyid = "*"
+    _accesskeysecret = "*"
     _signature = "雪山飞狐"
     _template_id = "SMS_172740103"
     _code = {"code": "0000"}
 
-    response_json = send_sms_ali("15614658856", _accesskeyid, _accesskeysecret, _signature, _template_id, _code)
+    response_json = send_sms_ali("手机号", _accesskeyid, _accesskeysecret, _signature, _template_id, _code)
     code = response_json['Code']
     message = response_json['Message']
     print(response_json)
